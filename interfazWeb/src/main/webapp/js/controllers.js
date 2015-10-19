@@ -30,6 +30,7 @@ var listarRecetasController = recetarioApp.controller('ListarRecetasController',
         };
      
         $scope.agregarIngrediente = function(){
+          document.cookie="receta=" + $scope.recetaSeleccionada.nombre	
           $state.go('nuevoIngrediente')
           
         };
@@ -66,29 +67,31 @@ var listarRecetasController = recetarioApp.controller('ListarRecetasController',
          };
       
         this.agregarCondimento = function(){
-        recetarioService.agregarCond({condimento:$scope.nuevoCondimento,receta:$scope.recetaSeleccionada})
-        };
+        recetarioService.agregarCond({nombre:$scope.nuevoCondimento,receta:$scope.recetaSeleccionada.nombre},function(){
+        	recetarioService.getAll()
+        });
+        }
       
         this.eliminarCondimento = function(){
-            recetarioService.eliminarCond({condimento:$scope.condmientoSeleccionado,receta:$scope.recetaSeleccionada})
-            }; 
-    } );
+            recetarioService.eliminarCond({nombre:$scope.condmientoSeleccionado,receta:$scope.recetaSeleccionada.nombre})
+            } 
+        });
 
-//var nuevoIngController = recetarioApp.controller('NuevoIngController', [
-//   'ingredientesTotales', '$scope', 'recetarioService', '$state', 
-//	function(ingredientesTotales, $scope, recetarioService, $state) {
-//		$scope.ingredientesRepo = ingredientesTotales.data.ingredientes;
-//		
-//		$scope.cancelar = function(){
-//			$state.go('listarRecetas');
-//		};
-//		
-//		this.agregar = function(){
-//			recetarioService.agregarIngrediente({nombre:$scope.ingredienteSeleccionado,receta:$scope.})
-//		}
-//        
-//    	
-//    } ]);
+var nuevoIngController = recetarioApp.controller('NuevoIngController', [
+   'ingredientesTotales', '$scope', 'recetarioService', '$state', 
+	function(ingredientesTotales, $scope, recetarioService, $state) {
+		$scope.ingredientesRepo = ingredientesTotales.data.ingredientes;
+		
+		$scope.cancelar = function(){
+			$state.go('listarRecetas');
+		};
+		
+		this.agregar = function(){
+			recetarioService.agregarIngrediente({nombre:$scope.ingredienteSeleccionado,cantidad:$scope.cantidad})
+		}
+        
+    	
+    } ]);
 
 var perfilUsuarioController = recetarioApp.controller('PerfilUsuarioController', [
 	  'personaData', '$scope', 'recetarioService', '$state',

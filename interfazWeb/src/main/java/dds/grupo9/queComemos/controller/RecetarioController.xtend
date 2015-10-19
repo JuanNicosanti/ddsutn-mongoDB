@@ -25,6 +25,7 @@ import dds.grupo9.queComemos.Receta
 import dds.grupo9.queComemos.applicationModels.DetalleRecetaAppModel
 import dds.grupo9.queComemos.RecetaSimple
 import java.util.Collection
+import dds.grupo9.queComemos.Ingrediente
 
 @Controller
 class RecetarioController {
@@ -124,12 +125,22 @@ class RecetarioController {
 	@Post("/nuevoCond")
 	def Result nuevoCond(@Body String body){
 		var NuevoCondimento condimento = body.fromJson(NuevoCondimento)
-		var receta = condimento.receta
+		var receta =repoRecetas.buscarRecetaPorNombre(condimento.receta)
 		receta.agregarCondimento(condimento.nombre)
 		println(receta.condimentos)
 		response.contentType = ContentType.APPLICATION_JSON
 		ok(receta.toJson)
-	}	
+	}
+	
+	@Post("/nuevoIng")	
+	def Result nuevoIng(@Body String body){
+		var NuevoIngrediente ingrediente = body.fromJson(NuevoIngrediente)
+		var receta = obtenerReceta(request)
+		println(receta)
+		receta.agregarIngrediente(new Ingrediente(ingrediente.nombre,ingrediente.cantidad))
+		response.contentType = ContentType.APPLICATION_JSON
+		ok(receta.toJson)
+	}
 		
 	
 		

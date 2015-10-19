@@ -32,11 +32,15 @@ var recetarioService = recetarioApp.service('recetarioService',[ '$http',
 			  return $http.post('/filtradas', body);
 		  };
 		  
-		  this.agregarCond = function(body){
-			  return $http.post('/nuevoCond',body);
+		  this.agregarCond = function(body,callback){
+			  return $http.post('/nuevoCond',body).then(callback);
 		  };
 		  
 		  this.eliminarCond = function(body){
 			  return $http.delete('/eliminarCond',body);
+		  };
+		  
+		  this.agregarIngrediente = function(body){
+			  return $http.post('/nuevoIng',body);
 		  };
 	    }]);

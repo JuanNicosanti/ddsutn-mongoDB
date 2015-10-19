@@ -16,18 +16,18 @@ import java.util.Collection
 @Observable
 class RepoRecetasEjemplo extends RepoRecetasPropio {
 	
-	@Accessors Receta receta1
-	@Accessors Receta receta2
-	@Accessors Receta receta3
-	@Accessors Receta receta4
-	@Accessors Receta receta5
-	@Accessors Receta receta6
-	@Accessors Receta receta7
-	@Accessors Receta receta8
-	@Accessors Receta receta9
-	@Accessors Receta receta10
-	@Accessors Receta receta11
-	@Accessors Receta receta12
+	@Accessors RecetaSimple receta1
+	@Accessors RecetaSimple receta2
+	@Accessors RecetaSimple receta3
+	@Accessors RecetaSimple receta4
+	@Accessors RecetaSimple receta5
+	@Accessors RecetaSimple receta6
+	@Accessors RecetaSimple receta7
+	@Accessors RecetaSimple receta8
+	@Accessors RecetaSimple receta9
+	@Accessors RecetaSimple receta10
+	@Accessors RecetaSimple receta11
+	@Accessors RecetaSimple receta12
 	
 	new()
 	{
@@ -190,6 +190,12 @@ class RepoRecetasEjemplo extends RepoRecetasPropio {
 		recetas.add(receta4)
 		recetas.add(receta5)
 		recetas.add(receta6)
+		recetas.add(receta7)
+		recetas.add(receta8)
+		recetas.add(receta9)
+		recetas.add(receta10)
+		recetas.add(receta11)
+		recetas.add(receta12)
 		recetas.findFirst[r|r.nombre==nombre]
 	}
 }

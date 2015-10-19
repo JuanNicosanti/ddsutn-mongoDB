@@ -61,43 +61,30 @@ class ConsultaReceta {
 	}
 	
 	def aplicarEstacion(Iterable<Receta> recetas, FiltrosReceta filtro) {
-		var Collection <Receta> recetasPorTemporada = newHashSet()
 		if(filtro.temporada == "verano"){
-			recetasPorTemporada.addAll(recetas.filter[!it.temporadasCorrespondientes.contains(Estacion.VERANO)])
-		}else{
-			if(filtro.temporada == "otogno"){
-				recetasPorTemporada.addAll(recetas.filter[!it.temporadasCorrespondientes.contains(Estacion.OTOGNO)])
-			}else{
-				if(filtro.temporada == "invierno"){
-					recetasPorTemporada.addAll(recetas.filter[!it.temporadasCorrespondientes.contains(Estacion.INVIERNO)])
-				}else{
-					if(filtro.temporada == "primavera"){
-						recetasPorTemporada.addAll(recetas.filter[!it.temporadasCorrespondientes.contains(Estacion.PRIMAVERA)])
-					}else{
-						recetasPorTemporada.addAll(recetas)
-					}
-				}
-			}
+			return recetas.filter[!it.temporadasCorrespondientes.contains(Estacion.VERANO)]
 		}
-		return recetasPorTemporada
+		if(filtro.temporada == "otogno"){
+			return recetas.filter[!it.temporadasCorrespondientes.contains(Estacion.OTOGNO)]
+		}
+		if(filtro.temporada == "invierno"){
+			return recetas.filter[!it.temporadasCorrespondientes.contains(Estacion.INVIERNO)]
+		}
+		if(filtro.temporada == "primavera"){
+			return recetas.filter[!it.temporadasCorrespondientes.contains(Estacion.PRIMAVERA)]
+		}
 	}
 
 	def aplicarDificultad(Iterable<Receta> recetas, FiltrosReceta filtro) {	
-		var Collection <Receta> recetasPorDificultad = newHashSet()	
-		if(filtro.dificultad == "Dificil"){
-			recetasPorDificultad.addAll(recetas.filter[it.dificultad != Dificultad.DIFICIL])
-		}else{
-			if(filtro.temporada == "Media"){
-				recetasPorDificultad.addAll(recetas.filter[it.dificultad != Dificultad.MEDIANA])
-			}else{
-				if(filtro.temporada == "Facil"){
-					recetasPorDificultad.addAll(recetas.filter[it.dificultad != Dificultad.FACIL])
-				}else{
-						recetasPorDificultad.addAll(recetas)
-				}
-			}
+		if(filtro.dificultad == "dificil"){
+			return recetas.filter[it.dificultad != Dificultad.DIFICIL]
 		}
-		return recetasPorDificultad
+		if(filtro.dificultad == "mediana"){
+			return recetas.filter[it.dificultad != Dificultad.MEDIANA]
+		}
+		if(filtro.dificultad == "facil"){
+			return recetas.filter[it.dificultad != Dificultad.FACIL]
+		}
 	}
 	
 }

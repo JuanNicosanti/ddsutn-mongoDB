@@ -31,6 +31,10 @@ class Vegano implements CondPreexistente {
 	
 	@Accessors String nombre = "Vegano"
 	
+	override toString(){
+		"Vegano"
+	}
+	
 	def agregarAlimentoConCarne(String preferencia){
 		ingredientesCarnicos.add(new Ingrediente(preferencia))
 	}

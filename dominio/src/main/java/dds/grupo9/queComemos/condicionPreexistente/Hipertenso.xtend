@@ -18,6 +18,10 @@ class Hipertenso implements CondPreexistente {
 	
 	@Accessors String nombre = "Hipertenso"
 	
+	override toString(){
+		"Hipertenso"
+	}
+	
 	def getPrescripcionesMedicas(){
 		this.prescripcionesMedicas
 	}

@@ -65,7 +65,7 @@
 				<label for="usuario"><h4>Condiciones preexistentes </h4></label> <select
 					class="form-control" id="condicionSeleccionada" size="3"
 					ng-model="condicionSeleccionada"
-					ng-options="condicion for condicion in condicionesPreexistentes">
+					ng-options="condicion.toString() for condicion in condicionesPreexistentes">
 				</select>
 			</div>					
 			</td>

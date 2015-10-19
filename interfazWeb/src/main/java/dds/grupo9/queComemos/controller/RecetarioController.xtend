@@ -26,6 +26,7 @@ import dds.grupo9.queComemos.applicationModels.DetalleRecetaAppModel
 import dds.grupo9.queComemos.RecetaSimple
 import java.util.Collection
 import dds.grupo9.queComemos.Ingrediente
+import org.uqbar.xtrest.api.annotation.Delete
 
 @Controller
 class RecetarioController {
@@ -142,10 +143,21 @@ class RecetarioController {
 		ok(receta.toJson)
 	}
 		
+	@Delete("/eliminarCond")
+	def Result eliminarCond(@Body String body){
+		println("Cond a eliminar")
+		println(body)
+		var NuevoCondimento condimento = body.fromJson(NuevoCondimento)
+		var receta = repoRecetas.buscarRecetaPorNombre(condimento.receta)
+		receta.eliminarCondimento(condimento.nombre)
+		response.contentType = ContentType.APPLICATION_JSON
+		ok(receta.toJson)
+		
+	}
 	
 		
 	def static void main(String[] args) {
-		XTRest.start(RecetarioController,8097)
+		XTRest.start(RecetarioController,8082)
 	}
 
 }

@@ -84,13 +84,13 @@ class ConsultaReceta {
 
 	def aplicarDificultad(Iterable<Receta> recetas, FiltrosReceta filtro) {	
 		var Collection <Receta> recetasPorDificultad = newHashSet()	
-		if(filtro.dificultad == "dificil"){
+		if(filtro.dificultad == "Dificil"){
 			recetasPorDificultad.addAll(recetas.filter[it.dificultad != Dificultad.DIFICIL])
 		}else{
-			if(filtro.temporada == "media"){
+			if(filtro.temporada == "Media"){
 				recetasPorDificultad.addAll(recetas.filter[it.dificultad != Dificultad.MEDIANA])
 			}else{
-				if(filtro.temporada == "facil"){
+				if(filtro.temporada == "Facil"){
 					recetasPorDificultad.addAll(recetas.filter[it.dificultad != Dificultad.FACIL])
 				}else{
 						recetasPorDificultad.addAll(recetas)

@@ -7,5 +7,6 @@ import dds.grupo9.queComemos.Receta
 class NuevoCondimento {
 	
 	String nombre
-	Receta receta
+	String receta
+	
 }

@@ -199,4 +199,8 @@ abstract class Receta{
 		ingredientes.map[it.nombre].toSet
 	}
 	
+	def eliminarCondimento(String string){
+		this.condimentos.remove(string)
+	}
+	
 }

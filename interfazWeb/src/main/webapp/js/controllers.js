@@ -36,7 +36,7 @@ var listarRecetasController = recetarioApp.controller('ListarRecetasController',
         };
         
         this.filtrarRecetas = function(nombreReceta, caloriasMin, caloriasMax, ingrediente, filtrosActivados, dificultadSeleccionada, temporadaSeleccionada){
-        	recetarioService.filtrar({
+            recetarioService.filtrar({
         	nombre:nombreReceta,
         	caloriasMin:caloriasMin,
         	caloriasMax:caloriasMax,
@@ -44,7 +44,9 @@ var listarRecetasController = recetarioApp.controller('ListarRecetasController',
         	filtrado:filtrosActivados,
         	dificultad:dificultadSeleccionada,
         	temporada:temporadaSeleccionada
-        	})
+        	}).success(function(data){
+        		$scope.recetasBuscadas = data;
+        	});
         };
         
         $scope.aplicarFiltros = function(checkboxModel){
@@ -73,9 +75,9 @@ var listarRecetasController = recetarioApp.controller('ListarRecetasController',
         }
       
         this.eliminarCondimento = function(){
-            recetarioService.eliminarCond({nombre:$scope.condmientoSeleccionado,receta:$scope.recetaSeleccionada.nombre})
-            } 
-        });
+            recetarioService.eliminarCond({nombre:$scope.condimentoSeleccionado,receta:$scope.recetaSeleccionada.nombre})
+            };     
+ });
 
 var nuevoIngController = recetarioApp.controller('NuevoIngController', [
    'ingredientesTotales', '$scope', 'recetarioService', '$state', 

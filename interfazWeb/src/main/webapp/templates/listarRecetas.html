@@ -54,8 +54,15 @@
 				<p>{{recetaSeleccionada.temporadasCorrespondientes}}</p>
 			</td>
 			<td width="200" ng-show="mostrarRecetas"> 
-			    <h4> Consultas </h4>
-			    <p> {{consultas}} </p>
+			    <h3> Consultas </h3>
+			    <h4> Consultas por hora </h4>
+			    <p> {{consultasPorHora}} </p>
+			    <h4> Mas consultadas </h4>
+			    <tr ng-repeat="recetaConsultada in recetasMasConsultadas">
+             		<td>{{ recetaConsultada.nombre }}</td>
+             		<td>      -->      </td>
+             		<td>{{ recetaConsultada.consultas }} consultas</td>
+             	</tr>
 			</td>    
 			
 			</tr>
@@ -200,7 +207,7 @@
 				<button class="btn btn-primary" ng-click="detalleReceta=true" ng-hide="detalleReceta || mostrarRecetas || consultarRecetas">Ver Receta</button>
 				<button class="btn btn-primary" ng-click="verPerfil()" ng-hide="detalleReceta || mostrarRecetas ||consultarRecetas">Ver Perfil De Usuario</button>
 		     	<button class="btn btn-primary" ng-click="consultarRecetas=true" ng-hide="detalleReceta || mostrarRecetas ||consultarRecetas">Consultar Recetas</button>
-		     	<button class="btn btn-primary" ng-click="mostrarRecetas=true" ng-hide="detalleReceta || mostrarRecetas || consultarRecetas">Ver Recetas Mas Consultadas</button>
+		     	<button class="btn btn-primary" ng-click="mostrarRecetas=true;verMonitores()" ng-hide="detalleReceta || mostrarRecetas || consultarRecetas">Ver Recetas Mas Consultadas</button>
 		     	<button class="btn btn-primary" ng-click="recetasCtrl.actualizar()" ng-show="detalleReceta ">Actualizar</button>
 		     	<button class="btn btn-primary" ng-click="detalleReceta=false" ng-show="detalleReceta ">Volver</button>
 		     	<button class="btn btn-primary" ng-click="mostrarRecetas=false" ng-show="mostrarRecetas">Volver </button>

@@ -7,12 +7,13 @@ import java.util.ArrayList
 import java.util.Collections
 import dds.grupo9.queComemos.repoRecetas.RepoRecetas
 import org.uqbar.commons.utils.Observable
+import org.eclipse.xtend.lib.annotations.Accessors
 
 @Observable
 class RecetasMasConsultadas implements Monitor {
 	
-	var ArrayList<EstadisticaReceta> listaEstadisticas = new ArrayList<EstadisticaReceta>()
-	var Collection<Receta> recetasOrdenadas = newHashSet()
+	@Accessors var ArrayList<EstadisticaReceta> listaEstadisticas = new ArrayList<EstadisticaReceta>()
+	@Accessors var Collection<Receta> recetasOrdenadas = newHashSet()
 	
 	
 	override void update(Persona persona, Collection<Receta> recetas){

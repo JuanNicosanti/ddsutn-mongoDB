@@ -25,6 +25,15 @@ var listarRecetasController = recetarioApp.controller('ListarRecetasController',
       $scope.dificultadSeleccionada="";
       $scope.temporadaSeleccionada="";
       
+      $scope.verMonitores = function(){
+    	  recetarioService.getRecetasMasConsultadas().success(function(data){
+    		  $scope.recetasMasConsultadas = data.listaEstadisticas;
+    	  });
+    	  recetarioService.getConsultasPorHora().success(function(data){
+    		  $scope.consultasPorHora = data;
+    	  });
+      };
+      
       $scope.verPerfil = function() {
     	  $state.go('perfilUsuario')
         };

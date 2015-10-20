@@ -20,7 +20,6 @@ import org.uqbar.xtrest.api.annotation.Post
 
 import static dds.grupo9.queComemos.controller.ConfiguredDependencies.*
 import javax.servlet.http.HttpServletRequest
-import dds.grupo9.queComemos.monitoreoDeConsultas.RecetasMasConsultadas
 import dds.grupo9.queComemos.Receta
 import dds.grupo9.queComemos.applicationModels.DetalleRecetaAppModel
 import dds.grupo9.queComemos.RecetaSimple
@@ -117,10 +116,22 @@ class RecetarioController {
 		var ConsultaReceta recetas = new ConsultaReceta(persona,repoRecetas)
 		recetas.filtrarRecetas(filtros)
 		var recetasFiltradas = recetas.recetas
+		consultasPorHora.update(persona, recetasFiltradas)
+		recetasMasConsultadas.update(persona, recetasFiltradas)
 		response.contentType = ContentType.APPLICATION_JSON
 		println("filtradas")
 		println(recetasFiltradas)
 		ok(recetasFiltradas.toJson)
+	}
+	
+	@Get("/recetasMasConsultadas")
+	def Result getRecetasMasConsultadas() {
+		ok(recetasMasConsultadas.toJson)	
+	}
+	
+	@Get("/consultasPorHora")
+	def Result getConsultasPorHora() {
+		ok(consultasPorHora.toJson)	
 	}
 	
 	@Post("/nuevoCond")

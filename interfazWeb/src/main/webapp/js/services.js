@@ -24,6 +24,14 @@ var recetarioService = recetarioApp.service('recetarioService',[ '$http',
 		        return $http.get('/consultas');
 		  };
 		  
+	      this.getRecetasMasConsultadas = function() {
+		        return $http.get('/recetasMasConsultadas');
+		  };
+		  
+	      this.getConsultasPorHora = function() {
+		        return $http.get('/consultasPorHora');
+		  };
+		  
 		  this.traerRecetasMasConsultadas = function(){
 			    return $http.get('/consultas2');
 		  };

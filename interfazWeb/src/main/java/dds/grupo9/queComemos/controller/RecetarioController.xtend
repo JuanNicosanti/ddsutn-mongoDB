@@ -143,13 +143,13 @@ class RecetarioController {
 		ok(receta.toJson)
 	}
 		
-	@Delete("/eliminarCond")
+	@Put("/eliminarCond")
 	def Result eliminarCond(@Body String body){
-		println("Cond a eliminar")
 		println(body)
 		var NuevoCondimento condimento = body.fromJson(NuevoCondimento)
 		var receta = repoRecetas.buscarRecetaPorNombre(condimento.receta)
 		receta.eliminarCondimento(condimento.nombre)
+		println(receta.condimentos)
 		response.contentType = ContentType.APPLICATION_JSON
 		ok(receta.toJson)
 		

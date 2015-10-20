@@ -37,7 +37,7 @@ var recetarioService = recetarioApp.service('recetarioService',[ '$http',
 		  };
 		  
 		  this.eliminarCond = function(body){
-			  return $http.delete('/eliminarCond',body);
+			  return $http.put('/eliminarCond',body);
 		  };
 		  
 		  this.agregarIngrediente = function(body){

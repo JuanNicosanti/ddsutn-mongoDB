@@ -46,6 +46,7 @@ var listarRecetasController = recetarioApp.controller('ListarRecetasController',
         	temporada:temporadaSeleccionada
         	}).success(function(data){
         		$scope.recetasBuscadas = data;
+        		$scope.filtradas = true;
         	});
         };
         
@@ -69,13 +70,13 @@ var listarRecetasController = recetarioApp.controller('ListarRecetasController',
          };
       
         this.agregarCondimento = function(){
-        recetarioService.agregarCond({nombre:$scope.nuevoCondimento,receta:$scope.recetaSeleccionada.nombre},function(){
-        	recetarioService.getAll()
-        });
+        recetarioService.agregarCond({nombre:$scope.nuevoCondimento,receta:$scope.recetaSeleccionada.nombre});
+        $scope.recetaSeleccionada.condimentos.push($scope.nuevoCondimento);
         }
       
         this.eliminarCondimento = function(){
-            recetarioService.eliminarCond({nombre:$scope.condimentoSeleccionado,receta:$scope.recetaSeleccionada.nombre})
+            recetarioService.eliminarCond({nombre:$scope.condimentoSeleccionado,receta:$scope.recetaSeleccionada.nombre});
+            $scope.recetaSeleccionada.condimentos.pop($scope.condimentoSeleccionado);
             };     
  });
 
@@ -90,6 +91,7 @@ var nuevoIngController = recetarioApp.controller('NuevoIngController', [
 		
 		this.agregar = function(){
 			recetarioService.agregarIngrediente({nombre:$scope.ingredienteSeleccionado,cantidad:$scope.cantidad})
+			
 		}
         
     	

@@ -8,7 +8,7 @@
 		
  <!--SELECCION DE RECETAS-->
 		<div class="panel-body">
-			<div class="adventure-selector col-md-4" ng-hide="detalleReceta">
+			<div class="adventure-selector col-md-4" ng-hide="detalleReceta || consultarRecetas">
 				<div class="form-group">
 					<label for="usuario">Recetas: {{mensajeSobreSeleccion}} </label> <select
 						class="form-control" id="recetaSeleccionada" size="15"
@@ -113,9 +113,9 @@
 			</div>	
 	
 	<!-- CONSULTA DE RECETAS -->		
-			<div class="adventure-detail col-md-8" ng-show="consultarRecetas"">
+			<div class="adventure-detail col-md-12" ng-show="consultarRecetas">
 			
-			<table>
+			<table >
 	<tr>
 	<td>
 		<label for="usuario">Nombre </label> 
@@ -176,7 +176,7 @@
     </table>
 <br>
 <br>
-  	<table border width=600>
+  	<table border width=600 ng-show="filtradas">
 	<tr>
 		<th> Nombre </th>
 		<th> Calorias </th>

@@ -8,7 +8,7 @@
 		
  <!--SELECCION DE RECETAS-->
 		<div class="panel-body">
-			<div class="adventure-selector col-md-4" ng-hide="detalleReceta || consultarRecetas">
+			<div class="adventure-selector col-md-4" ng-hide="detalleReceta || consultarRecetas || mostrarRecetas">
 				<div class="form-group">
 					<label for="usuario">Recetas: {{mensajeSobreSeleccion}} </label> <select
 						class="form-control" id="recetaSeleccionada" size="15"
@@ -35,17 +35,17 @@
 			</td>
 			</tr>
 			<tr>
-			<td width="250">
+			<td width="250" ng-hide="mostrarRecetas">
 				<h4>Nombre</h4>
 				<p>{{recetaSeleccionada.nombre}}</p>
 			</td>
-			<td width="200"> 
+			<td width="200" ng-hide="mostrarRecetas"> 
 				<h4>Calorias</h4>
 				<p>{{recetaSeleccionada.calorias}}</p>
 			</td>
 			</tr>
 			<tr>
-			<td width="250">
+			<td width="250" ng-hide="mostrarRecetas">
 				<h4>Dificultad</h4>
 				<p>{{recetaSeleccionada.dificultad}}</p>
 			</td>
@@ -58,7 +58,7 @@
 			    <h4> Consultas por hora </h4>
 			    <p> {{consultasPorHora}} </p>
 			    <h4> Mas consultadas </h4>
-			    <tr ng-repeat="recetaConsultada in recetasMasConsultadas">
+			    <tr ng-repeat="recetaConsultada in recetasMasConsultadas" ng-show="mostrarRecetas">
              		<td>{{ recetaConsultada.nombre }}</td>
              		<td>      -->      </td>
              		<td>{{ recetaConsultada.consultas }} consultas</td>

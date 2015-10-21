@@ -14,10 +14,8 @@ import javax.persistence.GeneratedValue
 @Entity
 @Observable
 @Accessors
-class Diabetico implements CondPreexistente {
-	@Id
-	@GeneratedValue
-	private Long id
+class Diabetico extends CondPreexistente {
+	
 	@Column
 	@Accessors int cantidadAzucarPermitida
 

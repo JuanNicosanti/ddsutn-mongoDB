@@ -6,6 +6,7 @@ import java.util.Collection
 import dds.grupo9.queComemos.condicionPreexistente.CondPreexistente
 import dds.grupo9.queComemos.Receta
 import dds.grupo9.queComemos.Persona
+import dds.grupo9.queComemos.repoUsuarios.RepoUsuarios
 
 @Data
 @Accessors
@@ -37,6 +38,7 @@ class UsuarioLogueado {
 		mapearCondicionesPreexistentes(this.condicionesPreexistentes, persona.condicionesPreexistentes)
 		this.rutina = persona.rutina
 		mapearRecetasFavoritas(this.recetasFavoritas, persona)
+		
 	}
 	
 	def calcularComplexion(float imc) {
@@ -63,6 +65,8 @@ class UsuarioLogueado {
 		var Collection<Receta> recetasFavoritas = persona.recetasFavoritas
 		recetas.addAll(recetasFavoritas.map[it.nombre])
 	}
-
+	def void setPersonaSeleccionada(Persona zona) {
+		//personaSeleccionada = RepoUsuarios.instance.searchById(zona.id)
+	}
 	
 }

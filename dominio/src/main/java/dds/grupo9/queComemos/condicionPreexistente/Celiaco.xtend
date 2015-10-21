@@ -13,10 +13,8 @@ import javax.persistence.Column
 @Entity
 @Observable
 @Accessors
-class Celiaco implements CondPreexistente {
-	@Id
-	@GeneratedValue
-	private Long id
+class Celiaco extends CondPreexistente {
+	
 	@Column
 	@Accessors String nombre = "Celiaco"
 	

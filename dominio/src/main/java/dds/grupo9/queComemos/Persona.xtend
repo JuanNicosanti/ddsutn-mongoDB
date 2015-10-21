@@ -22,10 +22,8 @@ import javax.persistence.ManyToOne
 @Observable
 @Accessors
 @Entity
-class Persona implements ConsultaDecorada {
-	@Id
-	@GeneratedValue
-	private Long id
+class Persona extends ConsultaDecorada {
+	
 	@Column
 	@Accessors float peso	/* Peso de un Usuario */
 	@Column
@@ -44,7 +42,7 @@ class Persona implements ConsultaDecorada {
 	@Accessors String rutina /* Tipo de rutina que lleva a cabo el Usuario */
 	@ManyToMany
     @Accessors var Collection<Receta> recetasPropias = newHashSet() /*Recetas de un Usuario */
-    @ManyToOne
+    
     @Accessors var Collection<GrupoDePersonas> grupos = newHashSet()
     @Accessors RepoRecetas repoRecetas
     @ManyToMany

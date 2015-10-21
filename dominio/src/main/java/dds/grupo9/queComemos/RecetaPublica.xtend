@@ -4,7 +4,7 @@ import dds.grupo9.queComemos.modificacionRecetas.Modificacion
 import dds.grupo9.queComemos.excepciones.NoLoTieneException
 import org.eclipse.xtend.lib.annotations.Accessors
 
-class RecetaPublica implements PrivacidadReceta {
+class RecetaPublica extends PrivacidadReceta {
 	
 	@Accessors Persona creador = new Persona
 		

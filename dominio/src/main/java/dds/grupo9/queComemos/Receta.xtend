@@ -19,6 +19,8 @@ import javax.persistence.Column
 import javax.persistence.ManyToOne
 import javax.persistence.Inheritance
 import javax.persistence.InheritanceType
+import javax.persistence.Enumerated
+import javax.persistence.Basic
 
 @Observable
 @Accessors
@@ -40,9 +42,9 @@ abstract class Receta{
     int tiempoPreparacion
     @ManyToMany
     var Collection<Ingrediente> ingredientes= newHashSet() /*Ingredientes de la receta */
-    @ManyToMany
+    @Basic
     var Collection<String> condimentos= newHashSet() /*Ingredientes de la receta */
-    @ManyToMany
+    @Enumerated
     var Collection<Estacion> temporadasCorrespondientes = newHashSet() /*Temporadas a las que corresponde la receta */
     @ManyToOne    
     var PrivacidadReceta privacidad /* Condición de privacidad de la receta (publica o privada) */

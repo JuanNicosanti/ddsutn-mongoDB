@@ -15,10 +15,8 @@ import javax.persistence.GeneratedValue
 @Accessors
 @Entity
 @Observable
-class Vegano implements CondPreexistente {
-	@Id
-	@GeneratedValue
-	private Long id
+class Vegano extends CondPreexistente {
+	
 	@ManyToMany
 	var Collection<Ingrediente> ingredientesCarnicos = newHashSet()
 	

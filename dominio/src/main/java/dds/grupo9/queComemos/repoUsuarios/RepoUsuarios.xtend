@@ -6,6 +6,8 @@ import dds.grupo9.queComemos.excepciones.NoLoTieneException
 import dds.grupo9.queComemos.excepciones.NoEsValidoException
 import org.hibernate.Criteria
 import org.hibernate.criterion.Restrictions
+import org.hibernate.HibernateException
+import org.hibernate.FetchMode
 
 class RepoUsuarios extends RepoDefault<Persona>{
 	
@@ -98,6 +100,23 @@ class RepoUsuarios extends RepoDefault<Persona>{
 	
 	override addQueryByExample(Criteria criteria, Persona t) {
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
+	def Persona searchById(Long id) {
+		val session = openSession
+		try {
+			val zonas = session.createCriteria(Persona).setFetchMode("recetasPropias", FetchMode.JOIN).add(
+				Restrictions.eq("id", id)).list
+			if (zonas.empty) {
+				return null
+			} else {
+				return zonas.head
+			}
+		} catch (HibernateException e) {
+			throw new RuntimeException(e)
+		} finally {
+			session.close
+		}
 	}
 	
 }

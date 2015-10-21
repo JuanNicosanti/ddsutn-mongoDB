@@ -16,12 +16,32 @@ import org.hibernate.HibernateException
 import org.hibernate.Criteria
 import org.hibernate.criterion.Restrictions
 import org.hibernate.FetchMode
+import dds.grupo9.queComemos.PrivacidadReceta
+import dds.grupo9.queComemos.RecetaPrivada
+import dds.grupo9.queComemos.RecetaPublica
+import dds.grupo9.queComemos.consultas.Consulta
+import dds.grupo9.queComemos.consultas.ConsultaDecorada
+import dds.grupo9.queComemos.consultas.ConsultaPorCaloriasMaximas
+import dds.grupo9.queComemos.consultas.ConsultaPorDisgusto
+import dds.grupo9.queComemos.consultas.ConsultaPorIngredientesCaros
+import dds.grupo9.queComemos.consultas.ConsultaPorCondicionesPreexistentes
 
 abstract class RepoDefault<T> {
 	private static final SessionFactory sessionFactory = new AnnotationConfiguration().configure().
 		addAnnotatedClass(Receta).addAnnotatedClass(Persona).addAnnotatedClass(Ingrediente).
 		addAnnotatedClass(RecetaSimple).addAnnotatedClass(RecetaCompuesta).addAnnotatedClass(Celiaco).
-		addAnnotatedClass(Vegano).addAnnotatedClass(Hipertenso).addAnnotatedClass(Diabetico).buildSessionFactory()
+		addAnnotatedClass(Vegano)
+		.addAnnotatedClass(Hipertenso)
+		.addAnnotatedClass(PrivacidadReceta)
+		.addAnnotatedClass(RecetaPrivada)
+		.addAnnotatedClass(RecetaPublica)
+		.addAnnotatedClass(Consulta)
+		.addAnnotatedClass(ConsultaDecorada)
+		.addAnnotatedClass(ConsultaPorCaloriasMaximas)
+		.addAnnotatedClass(ConsultaPorDisgusto)
+		.addAnnotatedClass(ConsultaPorCondicionesPreexistentes)
+		.addAnnotatedClass(ConsultaPorIngredientesCaros)
+		.addAnnotatedClass(Diabetico).buildSessionFactory()
 
 	def List<T> allInstances() {
 		val session = sessionFactory.openSession
@@ -81,20 +101,5 @@ abstract class RepoDefault<T> {
 		sessionFactory.openSession
 	}
 
-	def Persona searchById(Long id) {
-		val session = openSession
-		try {
-			val zonas = session.createCriteria(Persona).setFetchMode("recetasPropias", FetchMode.JOIN).add(
-				Restrictions.eq("id", id)).list
-			if (zonas.empty) {
-				return null
-			} else {
-				return zonas.head
-			}
-		} catch (HibernateException e) {
-			throw new RuntimeException(e)
-		} finally {
-			session.close
-		}
-	}
+	
 }

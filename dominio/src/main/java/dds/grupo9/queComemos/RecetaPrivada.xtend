@@ -2,7 +2,7 @@ package dds.grupo9.queComemos
 
 import dds.grupo9.queComemos.modificacionRecetas.Modificacion
 
-class RecetaPrivada implements PrivacidadReceta{
+class RecetaPrivada extends PrivacidadReceta{
 	
 	static Persona creador /* Creador de la receta */
 	

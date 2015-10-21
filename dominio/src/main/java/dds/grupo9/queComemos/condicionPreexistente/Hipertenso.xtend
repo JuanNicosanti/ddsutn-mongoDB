@@ -15,10 +15,8 @@ import javax.persistence.GeneratedValue
 @Entity
 @Observable
 @Accessors
-class Hipertenso implements CondPreexistente {
-	@Id
-	@GeneratedValue
-	private Long id
+class Hipertenso extends CondPreexistente {
+
 	@ManyToMany
 	var Collection<Ingrediente> prescripcionesMedicas = newHashSet()	
 	var Collection<String> prescripcionesMedicasCondimentos = newHashSet()

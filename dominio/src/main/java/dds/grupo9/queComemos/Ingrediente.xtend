@@ -2,10 +2,18 @@ package dds.grupo9.queComemos
 
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
+import javax.persistence.Entity
+import javax.persistence.Id
+import javax.persistence.GeneratedValue
 
 @Observable
+@Entity
+@Accessors
 class Ingrediente {
-
+	@Id
+	@GeneratedValue
+	private Long id
+	
 	@Accessors String nombre /* Para Entrega 2 */
 	@Accessors int cantidad
 	

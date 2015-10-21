@@ -12,28 +12,48 @@ import dds.grupo9.queComemos.repoRecetas.RepoRecetas
 import dds.grupo9.queComemos.consultas.ConsultaDecorada
 import dds.grupo9.queComemos.consultas.Consulta
 import org.uqbar.commons.utils.Observable
+import javax.persistence.Entity
+import javax.persistence.Id
+import javax.persistence.GeneratedValue
+import javax.persistence.Column
+import javax.persistence.ManyToMany
+import javax.persistence.ManyToOne
 
 @Observable
 @Accessors
+@Entity
 class Persona implements ConsultaDecorada {
-	
+	@Id
+	@GeneratedValue
+	private Long id
+	@Column
 	@Accessors float peso	/* Peso de un Usuario */
+	@Column
 	@Accessors float altura		/* Altura de un Usuario */
+	@Column
 	@Accessors String nombre	/* Nombre de un Usuario */
+	@Column
 	@Accessors String sexo		/* Sexo de un Usuario: M/m: Masculino y F/f: Femenino */
+	@Column
 	@Accessors long fechaNacimiento		/* Fecha de nacimiento de un Usuario */
 	@Accessors var Collection<String> gustos = newHashSet() /* Gustos de un Usuario */
 	@Accessors var Collection<String> disgustos = newHashSet() /*Disgustos de un Usuario */
+	@ManyToMany
 	@Accessors var Collection<CondPreexistente> condicionesPreexistentes = newHashSet() /* Condicionantes de un Usuario */
+	@Column
 	@Accessors String rutina /* Tipo de rutina que lleva a cabo el Usuario */
+	@ManyToMany
     @Accessors var Collection<Receta> recetasPropias = newHashSet() /*Recetas de un Usuario */
+    @ManyToOne
     @Accessors var Collection<GrupoDePersonas> grupos = newHashSet()
     @Accessors RepoRecetas repoRecetas
+    @ManyToMany
     @Accessors var Collection<Receta> recetasFavoritas = newHashSet()
     @Accessors RepoUsuarios repoUsuarios
     @Accessors String motivoRechazo
     @Accessors String mail 
     @Accessors int recibeMail
+    @ManyToOne
     @Accessors Receta recetaSeleccionada
     @Accessors String contrasegna
     @Accessors Collection <Receta> ultimasRecetasConsultadas = newHashSet()

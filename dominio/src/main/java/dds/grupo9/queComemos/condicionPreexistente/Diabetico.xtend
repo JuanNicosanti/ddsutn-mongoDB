@@ -5,14 +5,26 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import dds.grupo9.queComemos.Ingrediente
 import dds.grupo9.queComemos.Persona
 import dds.grupo9.queComemos.Receta
+import javax.persistence.Entity
+import org.uqbar.commons.utils.Observable
+import javax.persistence.Column
+import javax.persistence.Id
+import javax.persistence.GeneratedValue
 
+@Entity
+@Observable
+@Accessors
 class Diabetico implements CondPreexistente {
+	@Id
+	@GeneratedValue
+	private Long id
+	@Column
 	@Accessors int cantidadAzucarPermitida
 
 	new(){
 		cantidadAzucarPermitida = 100
 	}
-	
+	@Column
 	@Accessors String nombre = "Diabetico"
 	
 		override toString(){

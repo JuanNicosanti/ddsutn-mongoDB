@@ -11,20 +11,40 @@ import dds.grupo9.queComemos.condicionPreexistente.Hipertenso
 import dds.grupo9.queComemos.condicionPreexistente.Celiaco
 import dds.grupo9.queComemos.condicionPreexistente.Vegano
 import dds.grupo9.queComemos.condicionPreexistente.Diabetico
+import javax.persistence.Entity
+import javax.persistence.Id
+import javax.persistence.GeneratedValue
+import javax.persistence.ManyToMany
+import javax.persistence.Column
+import javax.persistence.ManyToOne
+import javax.persistence.Inheritance
+import javax.persistence.InheritanceType
 
 @Observable
 @Accessors
+@Entity
+@Inheritance(strategy=InheritanceType.JOINED)
 abstract class Receta{
-	
+	@Id
+	@GeneratedValue
+	private Long id
+	@Column
 	String nombre /*Nombre del plato */
+	@Column
     String explicacion /*Pasos a seguir en la receta */
+    @Column
     int calorias /*Calorías de la receta (A modificar) */
+    @Column
     Dificultad dificultad /*Dificultad de la receta */
+    @Column
     int tiempoPreparacion
+    @ManyToMany
     var Collection<Ingrediente> ingredientes= newHashSet() /*Ingredientes de la receta */
+    @ManyToMany
     var Collection<String> condimentos= newHashSet() /*Ingredientes de la receta */
+    @ManyToMany
     var Collection<Estacion> temporadasCorrespondientes = newHashSet() /*Temporadas a las que corresponde la receta */
-    var Collection<CondPreexistente> condiciones = newHashSet() /* Condiciones preexistentes */
+    @ManyToOne    
     var PrivacidadReceta privacidad /* Condición de privacidad de la receta (publica o privada) */
     String nombreDuenio
     

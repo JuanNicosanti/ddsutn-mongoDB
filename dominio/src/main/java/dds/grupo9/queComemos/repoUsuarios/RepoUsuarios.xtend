@@ -4,8 +4,10 @@ import java.util.Collection
 import dds.grupo9.queComemos.Persona
 import dds.grupo9.queComemos.excepciones.NoLoTieneException
 import dds.grupo9.queComemos.excepciones.NoEsValidoException
+import org.hibernate.Criteria
+import org.hibernate.criterion.Restrictions
 
-class RepoUsuarios {
+class RepoUsuarios extends RepoDefault<Persona>{
 	
 	var Collection<Persona> usuariosRegistrados = newHashSet()
 	var Collection<Persona> pendientes = newHashSet
@@ -21,7 +23,7 @@ class RepoUsuarios {
 		else throw new NoLoTieneException ("El usuario no está registrado")
 	}
 	
-	def update(Persona persona){
+	def registrar(Persona persona){
 		if(contieneUsuario(buscarPersonaPorNombre(persona))){
 			usuariosRegistrados.remove(buscarPersonaPorNombre(persona))
 			add(persona)
@@ -89,4 +91,13 @@ class RepoUsuarios {
 		if(perfilUsuario.usuarioValido) this.agregarAPendiente(perfilUsuario)
 		else throw new NoEsValidoException("El perfil que desea generar no corresponde a un usuario valido")
 	}
+	
+	override getEntityType() {
+		typeof(Persona)
+	}	
+	
+	override addQueryByExample(Criteria criteria, Persona t) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
 }

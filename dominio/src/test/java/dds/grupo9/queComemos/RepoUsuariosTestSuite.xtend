@@ -82,7 +82,7 @@ class RepoUsuariosTestSuite {
         
         var juaniActualizado = juani2
  
-        repoUsuarios.update(juaniActualizado)
+        repoUsuarios.registrar(juaniActualizado)
       
         Assert.assertEquals(juaniActualizado,repoUsuarios.get(juani))    
      }
@@ -95,7 +95,7 @@ class RepoUsuariosTestSuite {
         
         var juaniActualizado = juani2
        
-        repoUsuarios.update(juaniActualizado)   
+        repoUsuarios.registrar(juaniActualizado)   
    }
    
 	@Test

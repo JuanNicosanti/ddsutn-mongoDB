@@ -5,9 +5,22 @@ import dds.grupo9.queComemos.Ingrediente
 import dds.grupo9.queComemos.Receta
 import dds.grupo9.queComemos.Persona
 import org.eclipse.xtend.lib.annotations.Accessors
+import javax.persistence.Entity
+import org.uqbar.commons.utils.Observable
+import javax.persistence.ManyToMany
+import javax.persistence.Column
+import javax.persistence.Id
+import javax.persistence.GeneratedValue
 
+@Entity
+@Observable
+@Accessors
 class Hipertenso implements CondPreexistente {
-	var Collection<Ingrediente> prescripcionesMedicas = newHashSet()
+	@Id
+	@GeneratedValue
+	private Long id
+	@ManyToMany
+	var Collection<Ingrediente> prescripcionesMedicas = newHashSet()	
 	var Collection<String> prescripcionesMedicasCondimentos = newHashSet()
 	
 	new(){
@@ -15,7 +28,7 @@ class Hipertenso implements CondPreexistente {
     	prescripcionesMedicasCondimentos.add("sal")
     	prescripcionesMedicas.add(new Ingrediente("caldo",0))
 	}
-	
+	@Column
 	@Accessors String nombre = "Hipertenso"
 	
 	override toString(){

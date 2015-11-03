@@ -24,7 +24,7 @@ class SistemDB {
 		} catch (UnknownHostException e) {
 			throw new RuntimeException(e);
 		}
-		db = mongoClient.getDB("persistencia");
+		db = mongoClient.getDB("queComemosMongoDB");
 	}
 	
 	

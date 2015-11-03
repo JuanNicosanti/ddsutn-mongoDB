@@ -21,6 +21,7 @@ import javax.persistence.ManyToOne
 import org.mongojack.ObjectId
 import com.fasterxml.jackson.annotation.JsonProperty
 import dds.grupo9.queComemos.mongoDB.HomeUsuarios
+import com.fasterxml.jackson.annotation.JsonIgnore
 
 @Observable
 @Accessors

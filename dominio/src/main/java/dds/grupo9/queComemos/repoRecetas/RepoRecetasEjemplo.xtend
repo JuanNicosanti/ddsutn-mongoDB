@@ -125,7 +125,6 @@ class RepoRecetasEjemplo extends RepoRecetasPropio {
       	this.agregarRecetaPublica(receta3)
       	this.agregarRecetaPublica(receta4)
       	this.agregarRecetaPublica(receta5)
-      	receta6 = this.construirRecetaPublica()
       	this.agregarRecetaPublica(receta6)
       	this.agregarRecetaPublica(receta7)
       	this.agregarRecetaPublica(receta8)

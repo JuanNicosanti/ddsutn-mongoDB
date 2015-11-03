@@ -8,10 +8,12 @@ import dds.grupo9.queComemos.condicionPreexistente.CondPreexistente
 import java.util.Collection
 import dds.grupo9.queComemos.repoRecetas.RepoRecetas
 import dds.grupo9.queComemos.Persona
+import org.mongojack.Id
 
 class PersonaMongo {
+	@Id
 	@ObjectId
-	@JsonProperty("_id")
+	//@JsonProperty("_id")
 	String idMongo
 	
 	@Accessors float peso	/* Peso de un Usuario */
@@ -23,7 +25,7 @@ class PersonaMongo {
 	@Accessors String rutina /* Tipo de rutina que lleva a cabo el Usuario */
     @Accessors var Collection<Receta> recetasPropias = newHashSet() /*Recetas de un Usuario */
     @Accessors RepoRecetas repoRecetas
-    @Accessors var Collection<Receta> recetasFavoritas = newHashSet()
+    @Accessors var Collection<String> recetasFavoritas = newHashSet()
     @Accessors HomeUsuarios homeUsuarios
     @Accessors Receta recetaSeleccionada
     @Accessors String contrasegna
@@ -38,10 +40,14 @@ class PersonaMongo {
     	this.rutina = persona.rutina
     	this.recetasPropias.addAll(persona.recetasPropias)
     	this.repoRecetas = persona.repoRecetas
-    	this.recetasFavoritas.addAll(persona.recetasFavoritas)
+    	this.recetasFavoritas.addAll(mapearRecetasFavoritas(persona.recetasFavoritas))
     	this.homeUsuarios = persona.homeUsuarios
     	this.recetaSeleccionada = persona.recetaSeleccionada
     	this.contrasegna = persona.contrasegna    	
     }
+	
+	def mapearRecetasFavoritas(Collection<Receta> recetas) {
+		return recetas.map[it.nombre]
+	}
 
 }

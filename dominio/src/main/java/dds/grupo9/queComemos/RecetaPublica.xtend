@@ -3,10 +3,11 @@ package dds.grupo9.queComemos
 import dds.grupo9.queComemos.modificacionRecetas.Modificacion
 import dds.grupo9.queComemos.excepciones.NoLoTieneException
 import org.eclipse.xtend.lib.annotations.Accessors
+import com.fasterxml.jackson.annotation.JsonIgnore
 
 class RecetaPublica extends PrivacidadReceta {
 	
-	@Accessors Persona creador = new Persona
+	@JsonIgnore @Accessors Persona creador = new Persona
 		
 	override puedeVermeOModificarme(Persona persona){
 		

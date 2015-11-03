@@ -26,18 +26,11 @@ class HomeUsuariosEjemplo extends HomeUsuarios {
 	@Accessors Persona persona5
 	@Accessors RepoRecetasEjemplo repositorioRecetas
 	
-	@Accessors RecetasMasConsultadas monitor = new RecetasMasConsultadas()
-	
 	public Collection<PersonaMongo> homeUsuario
 	List<PersonaMongo> personas
 	
 	@Before
-	def void setup(){
-		var filtroPCP = new ConsultaPorCondicionesPreexistentes
-		var filtroPD = new ConsultaPorDisgusto()
-		var busqueda1 = new Busqueda()
-		var busqueda2 = new Busqueda()
-			
+	def void setup(){			
 		//crear y configurar personas
 		builder = new BuilderPersona
 		this.repositorioRecetas = new RepoRecetasEjemplo
@@ -65,42 +58,17 @@ class HomeUsuariosEjemplo extends HomeUsuarios {
 		
 		homeUsuario = SistemDB.instance().collection(PersonaMongo)
 		
-		busqueda1.agregarMonitor(monitor)
-		busqueda2.agregarMonitor(monitor)
-		
 		persona1.marcarRecetaComoFavorita(persona1.repoRecetas.getRecetas.head)
 		persona1.marcarRecetaComoFavorita(persona1.repoRecetas.getRecetas.last)
 		persona1.marcarRecetaComoFavorita(persona1.repoRecetas.getRecetas.findFirst[it.nombre=="Chori de cancha"])
 		persona1.marcarRecetaComoFavorita(persona1.repoRecetas.getRecetas.findFirst[it.nombre=="Fideos con crema"])
 		persona1.marcarRecetaComoFavorita(persona1.repoRecetas.getRecetas.findFirst[it.nombre=="Asadito dominguero"])
-		repositorioRecetas.construirRecetaPrivada(persona1)
 		
 		persona2.marcarRecetaComoFavorita(persona2.repoRecetas.getRecetas.head)
 		persona2.marcarRecetaComoFavorita(persona2.repoRecetas.getRecetas.last)
-		persona2.agregarDisgusto("pescado")
-		busqueda1.fuenteDeDatos = filtroPD
-		busqueda1.persona = persona2 
-		filtroPD.decorado = persona2
-		filtroPD.persona = persona2
-		busqueda1.resultadoSinProcesar()
 		
 		persona3.marcarRecetaComoFavorita(persona3.repoRecetas.getRecetas.head)
 		persona3.marcarRecetaComoFavorita(persona3.repoRecetas.getRecetas.last)
-		repositorioRecetas.construirRecetaPrivada(persona3)
-		persona3.agregarCondPreexistente(new Hipertenso())
-		
-		//persona4.marcarRecetaComoFavorita(persona4.repoRecetas.getRecetas.head)
-		//persona4.marcarRecetaComoFavorita(persona4.repoRecetas.getRecetas.last)
-		persona4.agregarCondPreexistente(new Hipertenso())
-		busqueda2.fuenteDeDatos = filtroPCP
-		busqueda2.persona = persona4
-		filtroPCP.decorado = persona4
-		filtroPCP.persona = persona4
-		busqueda2.resultadoSinProcesar()
-		
-		
-//		persona5.marcarRecetaComoFavorita(persona5.repoRecetas.getRecetas.head)
-//		persona5.marcarRecetaComoFavorita(persona5.repoRecetas.getRecetas.last)
 		
 		this.add(persona1)
 		this.add(persona2)

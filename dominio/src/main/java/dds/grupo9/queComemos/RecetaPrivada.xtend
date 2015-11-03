@@ -1,10 +1,11 @@
 package dds.grupo9.queComemos
 
 import dds.grupo9.queComemos.modificacionRecetas.Modificacion
+import com.fasterxml.jackson.annotation.JsonIgnore
 
 class RecetaPrivada extends PrivacidadReceta{
 	
-	static Persona creador /* Creador de la receta */
+	@JsonIgnore static Persona creador /* Creador de la receta */
 	
 	new(Persona persona){
 		creador = persona

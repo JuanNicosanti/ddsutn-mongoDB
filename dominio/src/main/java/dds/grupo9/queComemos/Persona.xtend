@@ -18,6 +18,9 @@ import javax.persistence.GeneratedValue
 import javax.persistence.Column
 import javax.persistence.ManyToMany
 import javax.persistence.ManyToOne
+import org.mongojack.ObjectId
+import com.fasterxml.jackson.annotation.JsonProperty
+import dds.grupo9.queComemos.mongoDB.HomeUsuarios
 
 @Observable
 @Accessors
@@ -48,6 +51,9 @@ class Persona extends ConsultaDecorada {
     @ManyToMany
     @Accessors var Collection<Receta> recetasFavoritas = newHashSet()
     @Accessors RepoUsuarios repoUsuarios
+    
+    @Accessors HomeUsuarios homeUsuarios
+    
     @Accessors String motivoRechazo
     @Accessors String mail 
     @Accessors int recibeMail

@@ -1,4 +1,4 @@
-package dds.grupo9.queComemos.repoUsuarios
+package dds.grupo9.queComemos.mongoDB
 
 import org.eclipse.xtend.lib.annotations.Accessors
 import dds.grupo9.queComemos.Persona
@@ -14,10 +14,10 @@ import org.junit.After
 import dds.grupo9.queComemos.mongoDB.Collection
 import dds.grupo9.queComemos.mongoDB.SistemDB
 import java.util.List
+import dds.grupo9.queComemos.repoUsuarios.BuilderPersona
 
 @Observable
-class RepoUsuarioEjemplo extends RepoUsuarios {
-	
+class HomeUsuariosEjemplo extends HomeUsuarios {
 	@Accessors BuilderPersona builder
 	@Accessors Persona persona1
 	@Accessors Persona persona2
@@ -28,8 +28,8 @@ class RepoUsuarioEjemplo extends RepoUsuarios {
 	
 	@Accessors RecetasMasConsultadas monitor = new RecetasMasConsultadas()
 	
-	public Collection<Persona> homeUsuario
-	List<Persona> personas
+	public Collection<PersonaMongo> homeUsuario
+	List<PersonaMongo> personas
 	
 	@Before
 	def void setup(){
@@ -63,7 +63,7 @@ class RepoUsuarioEjemplo extends RepoUsuarios {
 		persona4.contrasegna = "unaContrasegna"
 		persona5.contrasegna = "unaContrasegna"
 		
-		homeUsuario = SistemDB.instance().collection(Persona)
+		homeUsuario = SistemDB.instance().collection(PersonaMongo)
 		
 		busqueda1.agregarMonitor(monitor)
 		busqueda2.agregarMonitor(monitor)
@@ -107,8 +107,15 @@ class RepoUsuarioEjemplo extends RepoUsuarios {
 		this.add(persona3)
 		this.add(persona4)
 		this.add(persona5)
+		
+		val PersonaMongo p1 = new PersonaMongo(persona1)
+		val PersonaMongo p2 = new PersonaMongo(persona2)
+		val PersonaMongo p3 = new PersonaMongo(persona3)
+		val PersonaMongo p4 = new PersonaMongo(persona4)
+		val PersonaMongo p5 = new PersonaMongo(persona5)
+		
 		personas = #[
-			persona1, persona2, persona3, persona4, persona5
+			p1,p2,p3,p4,p5
 		]
 		homeUsuario.insert(personas)
 	}

@@ -6,7 +6,7 @@ import javax.persistence.Entity
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
 
-@Entity
+
 @Accessors
 @Observable
 class ConsultaPorCondicionesPreexistentes extends Consulta {

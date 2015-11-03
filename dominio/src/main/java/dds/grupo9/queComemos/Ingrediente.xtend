@@ -5,6 +5,7 @@ import org.uqbar.commons.utils.Observable
 import javax.persistence.Entity
 import javax.persistence.Id
 import javax.persistence.GeneratedValue
+import javax.persistence.Column
 
 @Observable
 @Entity
@@ -14,7 +15,9 @@ class Ingrediente {
 	@GeneratedValue
 	private Long id
 	
+	@Column
 	@Accessors String nombre /* Para Entrega 2 */
+	@Column
 	@Accessors int cantidad
 	
 	new (){}

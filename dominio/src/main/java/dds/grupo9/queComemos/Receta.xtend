@@ -21,6 +21,8 @@ import javax.persistence.Inheritance
 import javax.persistence.InheritanceType
 import javax.persistence.Enumerated
 import javax.persistence.Basic
+import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 
 @Observable
 @Accessors
@@ -47,7 +49,7 @@ abstract class Receta{
     @Enumerated
     var Collection<Estacion> temporadasCorrespondientes = newHashSet() /*Temporadas a las que corresponde la receta */
     @ManyToOne    
-    var PrivacidadReceta privacidad /* Condición de privacidad de la receta (publica o privada) */
+    @JsonIgnoreProperties var PrivacidadReceta privacidad /* Condición de privacidad de la receta (publica o privada) */
     String nombreDuenio
     
     new (RepoRecetas repositorio){

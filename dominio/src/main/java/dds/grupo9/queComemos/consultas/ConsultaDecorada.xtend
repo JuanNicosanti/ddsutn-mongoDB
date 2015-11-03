@@ -10,14 +10,12 @@ import org.uqbar.commons.utils.Observable
 import javax.persistence.Inheritance
 import javax.persistence.InheritanceType
 
-@Entity
+
 @Accessors
 @Observable
-@Inheritance(strategy=InheritanceType.JOINED)
+
 abstract class ConsultaDecorada {
-	@Id
-	@GeneratedValue
-	private Long id
+
 	def Collection<Receta> resultado()
 	def Collection<Consulta> coleccionDeConsultas()	
 	

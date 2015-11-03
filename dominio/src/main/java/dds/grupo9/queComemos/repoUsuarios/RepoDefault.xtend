@@ -6,7 +6,6 @@ import dds.grupo9.queComemos.Receta
 import dds.grupo9.queComemos.Persona
 import dds.grupo9.queComemos.Ingrediente
 import dds.grupo9.queComemos.RecetaSimple
-import dds.grupo9.queComemos.RecetaCompuesta
 import dds.grupo9.queComemos.condicionPreexistente.Celiaco
 import dds.grupo9.queComemos.condicionPreexistente.Diabetico
 import dds.grupo9.queComemos.condicionPreexistente.Vegano
@@ -14,34 +13,26 @@ import dds.grupo9.queComemos.condicionPreexistente.Hipertenso
 import java.util.List
 import org.hibernate.HibernateException
 import org.hibernate.Criteria
-import org.hibernate.criterion.Restrictions
-import org.hibernate.FetchMode
 import dds.grupo9.queComemos.PrivacidadReceta
 import dds.grupo9.queComemos.RecetaPrivada
 import dds.grupo9.queComemos.RecetaPublica
-import dds.grupo9.queComemos.consultas.Consulta
-import dds.grupo9.queComemos.consultas.ConsultaDecorada
-import dds.grupo9.queComemos.consultas.ConsultaPorCaloriasMaximas
-import dds.grupo9.queComemos.consultas.ConsultaPorDisgusto
-import dds.grupo9.queComemos.consultas.ConsultaPorIngredientesCaros
-import dds.grupo9.queComemos.consultas.ConsultaPorCondicionesPreexistentes
+import dds.grupo9.queComemos.monitoreoDeConsultas.EstadisticaReceta
 
 abstract class RepoDefault<T> {
-	private static final SessionFactory sessionFactory = new AnnotationConfiguration().configure().
-		addAnnotatedClass(Receta).addAnnotatedClass(Persona).addAnnotatedClass(Ingrediente).
-		addAnnotatedClass(RecetaSimple).addAnnotatedClass(RecetaCompuesta).addAnnotatedClass(Celiaco).
-		addAnnotatedClass(Vegano)
+	private static final SessionFactory sessionFactory = new AnnotationConfiguration().configure()
+		.addAnnotatedClass(Receta)
+		.addAnnotatedClass(Persona)
+		.addAnnotatedClass(Ingrediente)
+		.addAnnotatedClass(RecetaSimple)
+		.addAnnotatedClass(Celiaco)
+		.addAnnotatedClass(Vegano)
 		.addAnnotatedClass(Hipertenso)
 		.addAnnotatedClass(PrivacidadReceta)
 		.addAnnotatedClass(RecetaPrivada)
 		.addAnnotatedClass(RecetaPublica)
-		.addAnnotatedClass(Consulta)
-		.addAnnotatedClass(ConsultaDecorada)
-		.addAnnotatedClass(ConsultaPorCaloriasMaximas)
-		.addAnnotatedClass(ConsultaPorDisgusto)
-		.addAnnotatedClass(ConsultaPorCondicionesPreexistentes)
-		.addAnnotatedClass(ConsultaPorIngredientesCaros)
-		.addAnnotatedClass(Diabetico).buildSessionFactory()
+		.addAnnotatedClass(EstadisticaReceta)
+		.addAnnotatedClass(Diabetico)
+		.buildSessionFactory()
 
 	def List<T> allInstances() {
 		val session = sessionFactory.openSession
@@ -100,6 +91,4 @@ abstract class RepoDefault<T> {
 	def openSession() {
 		sessionFactory.openSession
 	}
-
-	
 }

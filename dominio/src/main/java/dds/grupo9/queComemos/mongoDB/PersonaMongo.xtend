@@ -25,7 +25,7 @@ class PersonaMongo {
 	@Accessors String rutina /* Tipo de rutina que lleva a cabo el Usuario */
     @Accessors var Collection<Receta> recetasPropias = newHashSet() /*Recetas de un Usuario */
     @Accessors RepoRecetas repoRecetas
-    @Accessors var Collection<String> recetasFavoritas = newHashSet()
+    @Accessors var Collection<Receta> recetasFavoritas = newHashSet()
     @Accessors HomeUsuarios homeUsuarios
     @Accessors Receta recetaSeleccionada
     @Accessors String contrasegna
@@ -40,11 +40,32 @@ class PersonaMongo {
     	this.rutina = persona.rutina
     	this.recetasPropias.addAll(persona.recetasPropias)
     	this.repoRecetas = persona.repoRecetas
-    	this.recetasFavoritas.addAll(mapearRecetasFavoritas(persona.recetasFavoritas))
+    	this.recetasFavoritas.addAll(persona.recetasFavoritas)
     	this.homeUsuarios = persona.homeUsuarios
     	this.recetaSeleccionada = persona.recetaSeleccionada
     	this.contrasegna = persona.contrasegna    	
     }
+    
+     def actualizar(Persona persona){
+    	this.peso = persona.peso
+    	this.altura = persona.altura
+    	this.nombre = persona.nombre
+    	this.sexo = persona.sexo
+    	this.fechaNacimiento = persona.fechaNacimiento
+    	this.condicionesPreexistentes.addAll(persona.condicionesPreexistentes)
+    	this.rutina = persona.rutina
+    	this.agregarNuevas(this.recetasPropias, persona.recetasPropias)
+    	this.repoRecetas = persona.repoRecetas
+    	this.recetasFavoritas.addAll(persona.recetasFavoritas)
+    	this.homeUsuarios = persona.homeUsuarios
+    	this.recetaSeleccionada = persona.recetaSeleccionada
+    	this.contrasegna = persona.contrasegna    	
+    }
+	
+	def void agregarNuevas(Collection<Receta> propias, Collection<Receta> nuevas){
+		println(nuevas.filter[!propias.contains(it)])
+		propias.addAll(nuevas.filter[!propias.contains(it)])
+	}
 	
 	def mapearRecetasFavoritas(Collection<Receta> recetas) {
 		return recetas.map[it.nombre]

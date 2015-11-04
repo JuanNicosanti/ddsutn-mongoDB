@@ -25,6 +25,7 @@ class HomeUsuariosEjemplo extends HomeUsuarios {
 	@Accessors Persona persona4
 	@Accessors Persona persona5
 	@Accessors RepoRecetasEjemplo repositorioRecetas
+	@Accessors PersonaMongo p3
 	
 	public Collection<PersonaMongo> homeUsuario
 	List<PersonaMongo> personas
@@ -78,7 +79,7 @@ class HomeUsuariosEjemplo extends HomeUsuarios {
 		
 		val PersonaMongo p1 = new PersonaMongo(persona1)
 		val PersonaMongo p2 = new PersonaMongo(persona2)
-		val PersonaMongo p3 = new PersonaMongo(persona3)
+		p3 = new PersonaMongo(persona3)
 		val PersonaMongo p4 = new PersonaMongo(persona4)
 		val PersonaMongo p5 = new PersonaMongo(persona5)
 		
